@@ -28,7 +28,7 @@ function Search() {
             }, 500);
           }
         } catch (error) {
-          console.error(error);
+          return;
         }
       };
       fetchUser();

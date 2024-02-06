@@ -63,7 +63,6 @@ function Signup() {
     setImage(e.target.files[0]);
     setPreview(URL.createObjectURL(e.target.files[0]));
     setUseDefaultImage((value) => (value === true ? !value : value));
-    console.log(e.target.files[0]);
   };
 
   function validateUsername() {
@@ -124,62 +123,97 @@ function Signup() {
     event.preventDefault();
     const formData = new FormData();
 
-    try {
+    // try {
+    //   formData.append("userName", username);
+    //   formData.append("email", email);
+    //   formData.append("password", password);
+    //   formData.append("image", image);
+    //   // await axiosInstance.post("/user/signup", formData, {
+    //   //   headers: { "Content-Type": "multipart/form-data" },
+    //   // });
+    //   // toast.promise(
+    //   //   async () => {
+    //   //     await axiosInstance.post("/user/signup", formData, {
+    //   //       headers: { "Content-Type": "multipart/form-data" },
+    //   //     });
+    //   //   },
+    //   //   {
+    //   //     pending: "Creating User...",
+    //   //     success: {
+    //   //       render() {
+    //   //         return "User Created";
+    //   //       },
+    //   //       theme: "colored",
+    //   //     },
+    //   //     error: {
+    //   //       render() {
+    //   //         return "Failed to  Create User";
+    //   //       },
+    //   //       theme: "colored",
+    //   //     },
+    //   //   }
+    //   // );
+    //   navigate("/signin", { replace: true });
+
+    //   // navigate("/login", { replace: true });
+    // } catch (error) {
+    //   if (error.message.includes("Network Error")) {
+    //     navigate("/oops", { state: { from: "/signup" }, replace: true });
+    //   } else if (
+    //     error.response.data.Error.error.includes("username already exists")
+    //   ) {
+    //     setUsernameError("Username already exists, Try another one");
+    //     setisValidUsername(false);
+    //   } else if (
+    //     error.response.data.Error.error.includes("email already exists")
+    //   ) {
+    //     setEmailError("Email already exists, Try another one");
+    //     setisValidEmail(false);
+    //   }
+
+    //   return;
+    // }
+
+    const signupPromise = new Promise((resolve, reject) => {
       formData.append("userName", username);
       formData.append("email", email);
       formData.append("password", password);
       formData.append("image", image);
 
-      toast.promise(
-        async () => {
-          try {
-            await axiosInstance.post("/user/signup", formData, {
-              headers: { "Content-Type": "multipart/form-data" },
-            });
-          } catch (error) {
-            return;
+      axiosInstance
+        .post("/user/signup", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then(() => {
+          navigate("/signin", { replace: true });
+          setEmail("");
+          setPassword("");
+          setUsername("");
+          resolve("Signup successful 👌");
+        })
+        .catch((error) => {
+          if (error.message.includes("Network Error")) {
+            navigate("/oops", { state: { from: "/signup" }, replace: true });
+          } else if (
+            error.response.data.Error.error.includes("username already exists")
+          ) {
+            setUsernameError("Username already exists, Try another one");
+            setisValidUsername(false);
+          } else if (
+            error.response.data.Error.error.includes("email already exists")
+          ) {
+            setEmailError("Email already exists, Try another one");
+            setisValidEmail(false);
           }
-        },
-        {
-          pending: "Creating User...",
-          success: {
-            render() {
-              return "User Created";
-            },
-            theme: "colored",
-          },
-          error: {
-            render() {
-              return "Failed to  Create User";
-            },
-            theme: "colored",
-          },
-        }
-      );
-      navigate("/signin", { replace: true });
+          reject("Signup failed 🤯");
+        });
+    });
 
-      // navigate("/login", { replace: true });
-    } catch (error) {
-      if (error.message.includes("Network Error")) {
-        navigate("/oops", { state: { from: "/signup" }, replace: true });
-      } else if (
-        error.response.data.Error.error.includes("username already exists")
-      ) {
-        setUsernameError("Username already exists, Try another one");
-        setisValidUsername(false);
-      } else if (
-        error.response.data.Error.error.includes("email already exists")
-      ) {
-        setEmailError("Email already exists, Try another one");
-        setisValidEmail(false);
-      }
-
-      return;
-    }
-
-    setEmail("");
-    setPassword("");
-    setUsername("");
+    toast.promise(signupPromise, {
+      pending: "Signup is in progress...",
+      success: "Signup successful 👌",
+      error: "Signup failed 🤯",
+    });
   }
   return (
     <div className=" bg-gradient-to-t from-gray-800 via-black to-blue-950 text-slate-50   h-screen w-screen flex justify-center items-center">

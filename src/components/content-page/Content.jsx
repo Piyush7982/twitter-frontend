@@ -47,7 +47,6 @@ function CreateTweet() {
     }
 
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -144,7 +143,12 @@ function CreateTweet() {
           </div>
           <button
             type="submit"
-            className="bg-blue-600 text-white tracking-tight p-1 m-2 w-1/12 font-medium hover:scale-110 rounded-md"
+            disabled={tweetText.length === 0}
+            className={
+              tweetText.length === 0
+                ? "bg-blue-300 text-blue-50 tracking-tight p-1 m-2 w-1/12 font-medium hover:scale-110 rounded-md"
+                : "bg-blue-600 text-white tracking-tight p-1 m-2 w-1/12 font-medium hover:scale-110 rounded-md"
+            }
             onClick={handleSubmit}
           >
             Tweet
@@ -173,7 +177,6 @@ export function FeedTweet({ children, link }) {
           headers: { "Content-Type": "application/json" },
         });
 
-        console.log(response.data.Data);
         if (response.data.Data.length === 0) {
           setnoTweet(true);
         }
@@ -182,7 +185,7 @@ export function FeedTweet({ children, link }) {
           settweet(response.data.Data);
         }, 1500);
       } catch (error) {
-        console.error(error);
+        return;
       }
     };
     fetchTweet();
@@ -204,7 +207,7 @@ export function FeedTweet({ children, link }) {
         setHasMore(false);
       }
     } catch (err) {
-      console.log(err);
+      return;
     }
   };
 
@@ -219,7 +222,7 @@ export function FeedTweet({ children, link }) {
         hasMore={hasMore}
         loader={<Loader />}
         scrollThreshold={0.9}
-        height={700}
+        height={750}
         // endMessage={"end"}
         style={{ overflow: "auto" }}
 
@@ -300,7 +303,7 @@ export function TweetCard({ tweet }) {
         }
       );
     } catch (err) {
-      console.log(err);
+      return;
     }
   };
   useEffect(() => {

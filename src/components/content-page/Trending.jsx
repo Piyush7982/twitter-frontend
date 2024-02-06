@@ -32,14 +32,13 @@ function TrendingDiv({ name }) {
           }
         );
 
-        console.log(response.data.Data);
         setHashtags(response.data.Data);
         setTimeout(() => {
           setLoading(false);
         }, 900);
       } catch (error) {
         setLoading(false);
-        console.error(error);
+        return;
       }
     };
     fetchHashtags();

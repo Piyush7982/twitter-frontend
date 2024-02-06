@@ -24,7 +24,7 @@ function NavigationButtons() {
         }
       );
     } catch (error) {
-      console.log(error);
+      return;
     }
   }
 

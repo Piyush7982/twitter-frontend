@@ -32,7 +32,7 @@ function UserPage() {
           throw error;
         }
       } catch (error) {
-        console.log(error);
+        return;
         // navigate(" ", { replace: true });
         // navigate("../", { replace: true });
       }
@@ -51,7 +51,7 @@ function UserPage() {
       setbio(changeBio);
       // console.log(res);
     } catch (err) {
-      console.log(err);
+      return;
     }
   }
   return (
@@ -189,7 +189,7 @@ function UserFeed() {
         hasMore={hasMore}
         loader={<Loader />}
         scrollThreshold={0.9}
-        height={700}
+        height={750}
         endMessage={
           <p className="text-center text-slate-300">No More Tweets</p>
         }
@@ -313,7 +313,7 @@ export function TweetCardUser({ tweet }) {
         }
       );
     } catch (err) {
-      console.log(err);
+      return;
     }
   };
   useEffect(() => {
@@ -436,10 +436,8 @@ const ConfirmationAlert = ({ message, onConfirm, onCancel, id }) => {
         const res = await axiosInstance.delete(`/tweet/${id}`, {
           headers: { "Content-Type": "application/json" },
         });
-
-        console.log(res);
       } catch (err) {
-        console.log(err);
+        return;
       }
     }
     deleteTweet().then(() => {

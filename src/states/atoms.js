@@ -25,7 +25,6 @@ export const userAuthState = () => {
 
   const status = async () => {
     try {
-      console.log("checking auth");
       const res = await axiosInstance.get("/user/checkAuth", {
         headers: { "Content-Type": "application/json" },
       });
@@ -44,7 +43,7 @@ export const userAuthState = () => {
     } catch (error) {
       localStorage.setItem("status", false);
       setauth(false);
-      console.log(error);
+
       return;
     }
   };

@@ -52,7 +52,7 @@ function TweetInfo() {
         }, 1500);
       } catch (error) {
         setNoRetweet(true);
-        console.error(error);
+        return;
       }
     };
     fetchRetweet();
@@ -76,7 +76,7 @@ function TweetInfo() {
         }
       }, 1200);
     } catch (err) {
-      console.log(err);
+      return;
     }
   };
   return (
@@ -92,7 +92,7 @@ function TweetInfo() {
             <b>. . . .</b>
           </p>
         }
-        height={700}
+        height={750}
         style={{
           overflow: "auto",
         }}
@@ -252,7 +252,7 @@ function TweetCardLite({ tweet }) {
         }
       );
     } catch (err) {
-      console.log(err);
+      return;
     }
   };
   useEffect(() => {

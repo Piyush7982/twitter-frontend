@@ -49,7 +49,7 @@ function UserProfile() {
 
 function ProfileBlock({ user }) {
   const [follow, setfollow] = useState(false);
-  console.log(user);
+
   return (
     // <div className=" hidden">
     <div className=" min-h-[62%]  w-11/12 mx-auto  pt-3 flex flex-col justify-around  border-slate-500 border-b-[0.1px] border-t-[0.1px] ">
