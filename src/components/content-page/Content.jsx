@@ -8,7 +8,7 @@ import { FaThumbsUp } from "react-icons/fa";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import "react-toastify/dist/ReactToastify.css";
-import { cookiePresentState } from "../../states/atoms";
+import { cookiePresentState, userPhotoState } from "../../states/atoms";
 import axiosInstance from "../../helper/axios.instance";
 
 function CreateTweet() {
@@ -18,6 +18,7 @@ function CreateTweet() {
   const [tweetText, setTweetText] = useState("");
   const [image, setImage] = useState(null);
   const { cookie, setcookie } = cookiePresentState();
+  const { userPhoto } = userPhotoState();
 
   const handleTextareaChange = (e) => {
     setWordcount(e.target.value.length);
@@ -102,7 +103,10 @@ function CreateTweet() {
     <div className=" border-slate-500 border-t-[0.1px] border-b-[0.1px] w-full h-2/5 min-h-[40%] mt-3 flex flex-col justify-center items-center">
       <div className="rounded-lg bg-gray-800 h-5/6 w-11/12 flex flex-col justify-between">
         <div className="flex gap-4 items-center h-2/5 pl-5">
-          <div className="bg-white mt-4 w-[60px] h-[60px] rounded-full"></div>
+          <img
+            src={userPhoto}
+            className="bg-white mt-4 w-[60px] h-[60px] rounded-full"
+          />
           <div className="text-slate-300 text-xl font-semibold tracking-wide">
             @{userName}
           </div>
@@ -224,7 +228,7 @@ export function FeedTweet({ children, link }) {
         scrollThreshold={0.9}
         height={750}
         // endMessage={"end"}
-        style={{ overflow: "auto" }}
+        style={{ overflow: "auto", paddingBottom: "20px" }}
 
         // onScroll={fetchMoreData}
       >

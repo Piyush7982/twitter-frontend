@@ -11,8 +11,8 @@ function Trending() {
         Trending
       </h1>
       <div className="h-[95%] space-y-14  w-full">
-        <TrendingDiv name="# Hashtags" />
-        <TrendingDiv name="Tweet" />
+        <TrendingDiv name="# Hashtags (UnderDevelopment)" />
+        <TrendingDiv name="Tweet (UnderDevelopment)" />
       </div>
     </div>
   );

@@ -95,6 +95,7 @@ function TweetInfo() {
         height={750}
         style={{
           overflow: "auto",
+          paddingBottom: "20px",
         }}
       >
         {/* <TweetCard tweet={tweet} /> */}
@@ -429,7 +430,7 @@ function CreateRetweet({ setClicked }) {
         setClicked(false);
         window.location.reload();
       }, 2000);
-      toast.success("Tweet created", {
+      toast.success("Retweet created", {
         autoClose: 2000,
         theme: "colored",
       });

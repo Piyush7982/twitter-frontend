@@ -193,6 +193,7 @@ function UserFeed() {
         endMessage={
           <p className="text-center text-slate-300">No More Tweets</p>
         }
+        style={{ paddingBottom: "20px" }}
       >
         {/* <ProfileBlock user={}/> */}
         <UserPage />
@@ -363,14 +364,9 @@ export function TweetCardUser({ tweet }) {
           <div className="text-gray-400 ml-2 text-sm tracking-wide">
             {modifyDate(tweet?.createdAt)}
           </div>
-          {/* <MdDelete
-            className="flex justify-end ml-auto mr-5 mb-auto  hover:scale-150 transition delay-75 "
-            color="white"
-          /> */}
+
           <ConfirmationAlert
             message="Are you sure you want to delete this tweet?"
-            // onConfirm={() => console.log("Content deleted")}
-            // onCancel={() => console.log("Deletion cancelled")}
             id={`${tweet?._id}`}
           />
         </div>

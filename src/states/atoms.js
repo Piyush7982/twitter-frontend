@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
 import axiosInstance from "../helper/axios.instance";
 
@@ -20,6 +19,11 @@ const userAuth = atom({
   default: false,
 });
 
+const userProfilePhoto = atom({
+  key: "userProfilePhoto",
+  default: "",
+});
+
 export const userAuthState = () => {
   const [auth, setauth] = useRecoilState(userAuth);
 
@@ -28,13 +32,6 @@ export const userAuthState = () => {
       const res = await axiosInstance.get("/user/checkAuth", {
         headers: { "Content-Type": "application/json" },
       });
-      // const res = await axios.get(
-      //   "http://localhost:4000/api/v1/user/checkAuth",
-      //   {
-      //     withCredentials: true,
-      //     headers: { "Content-Type": "application/json" },
-      //   }
-      // );
 
       const authotrised = res ? true : false;
       setauth(authotrised);
@@ -64,4 +61,9 @@ export const cookiePresentState = () => {
 export const userInfo = () => {
   const [userlog, setuserlog] = useRecoilState(loggedUser);
   return { userlog, setuserlog };
+};
+
+export const userPhotoState = () => {
+  const [userPhoto, setuserPhoto] = useRecoilState(userProfilePhoto);
+  return { userPhoto, setuserPhoto };
 };

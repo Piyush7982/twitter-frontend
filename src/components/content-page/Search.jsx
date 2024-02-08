@@ -62,7 +62,7 @@ function Searchbar({ setinputString }) {
       <input
         onChange={(e) => setinputString(e.target.value)}
         className="w-10/12  h-1/2 rounded-xl bg-gray-200 py-2 px-4 text-gray-700 leading-tight focus:outline-none"
-        placeholder="Search Twitter"
+        placeholder="Search Username on Twitter"
       />
     </div>
   );

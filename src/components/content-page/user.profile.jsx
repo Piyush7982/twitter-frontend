@@ -60,12 +60,12 @@ function ProfileBlock({ user }) {
       <div className="flex items-center my-1 justify-between text-2xl font-bold text-white tracking-tight">
         @{user?.userName}{" "}
         <span className="mx-3">
-          <button className="text-green-500 bg-green-900 py-1  px-2 text-lg font-semibold rounded-3xl">
+          <button className="text-green-400 bg-green-900 py-1  px-2 text-lg font-semibold rounded-3xl">
             following
           </button>
-          {/* <button className="bg-blue-500 py-1 px-2 text-lg font-semibold rounded-3xl">
-            follow
-          </button> */}
+          <button className="bg-blue-900 text-blue-400 py-1 ml-2 px-2 text-lg font-semibold rounded-3xl">
+            UnderTest
+          </button>
         </span>
       </div>
       <div className=" w-11/12 pl-2  mx-auto  font-semibold my-2 text-sm min-h-[40%] text-slate-300">

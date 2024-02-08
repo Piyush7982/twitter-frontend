@@ -5,7 +5,7 @@ import { RiUserFollowFill } from "react-icons/ri";
 import { IoMdPersonAdd } from "react-icons/io";
 import { useEffect, useState } from "react";
 
-import { userBioState, userInfo } from "../../states/atoms";
+import { userBioState, userInfo, userPhotoState } from "../../states/atoms";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../helper/axios.instance";
 
@@ -31,8 +31,7 @@ function UserProfile() {
   const { userlog, setuserlog } = userInfo();
   const { bio, setbio } = userBioState();
   const [user, setuser] = useState({});
-
-  // const [userInfo, setuserInfo] = useRecoilState(loggedUser);
+  const { setuserPhoto } = userPhotoState();
 
   useEffect(() => {
     async function fetchUser() {
@@ -47,6 +46,7 @@ function UserProfile() {
 
         setbio(data?.data?.Data?.bio);
         setuser(data?.data?.Data);
+        setuserPhoto(data?.data?.Data?.coverPhoto);
       }
     }
     fetchUser();
@@ -61,13 +61,6 @@ function UserProfile() {
         ></img>
         <Link
           to={"/userProfile"}
-          // onClick={(e) => {
-          //   e.target.addEventListener("click", (e) => {
-          //     e.target.classList.remove("text-ellipsis");
-          //     e.target.classList.add("overflow-auto");
-          //   });
-          //   className = "bg-white";
-          // }}
           className="text-lg  font-bold flex flex-col justify-center items-center  overflow-auto h-20 w-32"
         >
           {user?.userName}
@@ -92,12 +85,12 @@ function UserProfile() {
 }
 function Suggestions() {
   const [users, setusers] = useState([
-    { id: 1, name: "jcnzjnd" },
-    { id: 2, name: "jcnzj" },
-    { id: 3, name: "jcnzjn" },
-    { id: 4, name: "jcnz" },
-    { id: 5, name: "jcnzjkjk" },
-    { id: 6, name: "jcnzjndhg" },
+    { id: 1, name: "Test" },
+    { id: 2, name: "Test" },
+    { id: 3, name: "Test" },
+    { id: 4, name: "Test" },
+    { id: 5, name: "Test" },
+    { id: 6, name: "Test" },
   ]);
   function handleFollow(id) {
     setusers((prev) => {
