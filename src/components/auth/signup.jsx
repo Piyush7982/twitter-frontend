@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 import { useNavigate } from "react-router-dom";
 import defaultProfile from "../../assets/defaultProfile.jpg";
@@ -123,57 +124,6 @@ function Signup() {
     event.preventDefault();
     const formData = new FormData();
 
-    // try {
-    //   formData.append("userName", username);
-    //   formData.append("email", email);
-    //   formData.append("password", password);
-    //   formData.append("image", image);
-    //   // await axiosInstance.post("/user/signup", formData, {
-    //   //   headers: { "Content-Type": "multipart/form-data" },
-    //   // });
-    //   // toast.promise(
-    //   //   async () => {
-    //   //     await axiosInstance.post("/user/signup", formData, {
-    //   //       headers: { "Content-Type": "multipart/form-data" },
-    //   //     });
-    //   //   },
-    //   //   {
-    //   //     pending: "Creating User...",
-    //   //     success: {
-    //   //       render() {
-    //   //         return "User Created";
-    //   //       },
-    //   //       theme: "colored",
-    //   //     },
-    //   //     error: {
-    //   //       render() {
-    //   //         return "Failed to  Create User";
-    //   //       },
-    //   //       theme: "colored",
-    //   //     },
-    //   //   }
-    //   // );
-    //   navigate("/signin", { replace: true });
-
-    //   // navigate("/login", { replace: true });
-    // } catch (error) {
-    //   if (error.message.includes("Network Error")) {
-    //     navigate("/oops", { state: { from: "/signup" }, replace: true });
-    //   } else if (
-    //     error.response.data.Error.error.includes("username already exists")
-    //   ) {
-    //     setUsernameError("Username already exists, Try another one");
-    //     setisValidUsername(false);
-    //   } else if (
-    //     error.response.data.Error.error.includes("email already exists")
-    //   ) {
-    //     setEmailError("Email already exists, Try another one");
-    //     setisValidEmail(false);
-    //   }
-
-    //   return;
-    // }
-
     const signupPromise = new Promise((resolve, reject) => {
       formData.append("userName", username);
       formData.append("email", email);
@@ -232,7 +182,11 @@ function Signup() {
                 document.querySelector("input[type=file]").click();
               }}
               style={{ objectFit: "cover" }}
-              className="bg-white hover:cursor-pointer rounded-full w-24 h-24  ring-4 ring-blue-600"
+              className="bg-white hover:cursor-pointer hover:opacity-85 rounded-full w-24 h-24  ring-4 ring-blue-600"
+            />
+            <MdOutlineAddPhotoAlternate
+              className=" mt-20 -ml-2 text-blue-200"
+              size={20}
             />
             <input
               type="file"

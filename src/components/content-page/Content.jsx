@@ -263,7 +263,7 @@ export function TweetCard({ tweet }) {
   const [likeCount, setlikeCount] = useState(0);
   const [retweetCount, setretweetCount] = useState(0);
   const renderContent = () => {
-    const contentArray = tweet?.content?.split(" ");
+    const contentArray = tweet?.content?.split(/\s+/);
     return contentArray?.map((word, index) => {
       if (word.startsWith("#")) {
         return (
